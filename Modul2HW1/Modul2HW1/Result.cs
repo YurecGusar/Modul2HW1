@@ -20,6 +20,6 @@ namespace Modul2HW1
         }
 
         public bool Status { get; set; }
-        private string Message { get; set; }
+        public string Message { get; set; }
     }
 }
