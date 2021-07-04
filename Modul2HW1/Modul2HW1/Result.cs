@@ -4,21 +4,22 @@ namespace Modul2HW1
 {
     public class Result
     {
-        private bool _status;
-        private string _message;
         public Result()
         {
         }
 
         public Result(bool status)
         {
-            _status = status;
+            Status = status;
         }
 
         public Result(bool status, string message)
-            {
-                _status = status;
-                _message = message;
-            }
+        {
+            Status = status;
+            Message = message;
+        }
+
+        public bool Status { get; set; }
+        private string Message { get; set; }
     }
 }
