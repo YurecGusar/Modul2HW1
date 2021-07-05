@@ -6,6 +6,7 @@ namespace Modul2HW1
     {
         public void Run()
         {
+            var logger = Logger.Instance;
             var message = string.Empty;
             var result = new Result();
             var actions = new Actions();
@@ -31,11 +32,13 @@ namespace Modul2HW1
                 }
 
                 message = $"Action failed by a reason: {result.Message}";
-                if (result.Status == false)
+                if (!result.Status)
                 {
-                    Logger.Instance.Print(LogType.Error, message);
+                    logger.Print(LogType.Error, message);
                 }
             }
+
+            logger.ToFile();
         }
     }
 }

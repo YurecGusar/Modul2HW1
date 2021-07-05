@@ -20,10 +20,7 @@ namespace Modul2HW1
 
         public static Logger Instance
         {
-            get
-            {
-                return _instance;
-            }
+            get => _instance;
         }
 
         public void Print(LogType type, string message)
