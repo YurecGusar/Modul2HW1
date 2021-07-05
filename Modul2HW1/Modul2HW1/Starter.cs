@@ -1,21 +1,23 @@
 ﻿using System;
+using System.IO;
 
 namespace Modul2HW1
 {
     public class Starter
     {
+        private readonly Logger _logger = Logger.Instance;
+        private readonly Random _randomMethod = new Random();
+
         public void Run()
         {
-            var logger = Logger.Instance;
-            var message = string.Empty;
-            var result = new Result();
             var actions = new Actions();
-            var randomMethod = new Random();
-            var maxRandomValue = 3;
-            var iterNum = 100;
-            for (var i = 0; i < iterNum; i++)
+            var result = new Result();
+            var message = string.Empty;
+            const int MaxRandomValue = 3;
+            const int IterNum = 100;
+            for (var i = 0; i < IterNum; i++)
             {
-                switch (randomMethod.Next(maxRandomValue))
+                switch (_randomMethod.Next(MaxRandomValue))
                 {
                     case 0:
                         result = actions.FirstMethod();
@@ -26,19 +28,16 @@ namespace Modul2HW1
                     case 2:
                         result = actions.ThirdMethod();
                         break;
-                    default:
-                        Console.WriteLine("Что-то пошло не так");
-                        break;
                 }
 
-                message = $"Action failed by a reason: {result.Message}";
                 if (!result.Status)
                 {
-                    logger.Print(LogType.Error, message);
+                    message = $"Action failed by a reason: {result.Message}";
+                    _logger.Print(LogType.Error, message);
                 }
             }
 
-            logger.ToFile();
+            File.WriteAllText("log.txt", _logger.ReturnValuesToFile().ToString());
         }
     }
 }

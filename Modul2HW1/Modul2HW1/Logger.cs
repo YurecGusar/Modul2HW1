@@ -23,16 +23,16 @@ namespace Modul2HW1
             get => _instance;
         }
 
+        public StringBuilder ReturnValuesToFile()
+        {
+            return _logs;
+        }
+
         public void Print(LogType type, string message)
         {
             var log = $"{DateTime.UtcNow}: {type.ToString()}: {message}";
             _logs.AppendLine(log);
             Console.WriteLine(log);
-        }
-
-        public void ToFile()
-        {
-            File.WriteAllText("log.txt", _logs.ToString());
         }
     }
 }
